@@ -1,0 +1,6 @@
+<!-- This is a sample lanuch file, please change it based on your needs -->
+<launch>
+        <node name="record" pkg="drone_detection" type="record" output="screen">
+        </node>    
+	  
+</launch>
