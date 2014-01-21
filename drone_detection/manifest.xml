@@ -1,0 +1,31 @@
+<package>
+  <description brief="drone_detection">
+
+     drone_detection
+     Paquete de ROS para utilizado para la deteccion de minas antipersona usandi algorimos de vision
+
+  </description>
+  <author>Juan Pablo Rodríguez (j_rodriguezg@javeriana.edu.co) Carolina Castiblanco (jenny.castiblanco@javeriana.edu.co)</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url></url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+  <depend package="image_transport"/>
+  <depend package="ardrone_autonomy"/>
+  <depend package="roslib"/>
+  <depend package="tum_ardrone"/>
+  <rosdep name="qt4"/>
+  <rosdep name="libblas-dev"/>
+  <rosdep name="liblapack-dev"/>
+
+  <rosdep name="libqt4-dev"/>
+  <rosdep name="qt4-qmake"/>
+
+</package>
+
+
