@@ -1,0 +1,6 @@
+<!-- This is a sample lanuch file, please change it based on your needs -->
+<launch>
+        <node name="drone_detection_GUI" pkg="drone_detection" type="drone_detection_GUI" output="screen">
+         
+        </node>     
+</launch>
