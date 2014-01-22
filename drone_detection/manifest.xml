@@ -18,7 +18,7 @@
   <depend package="image_transport"/>
   <depend package="ardrone_autonomy"/>
   <depend package="roslib"/>
-  <depend package="tum_ardrone"/>
+  <!--depend package="tum_ardrone"/-->
   <rosdep name="qt4"/>
   <rosdep name="libblas-dev"/>
   <rosdep name="liblapack-dev"/>
