@@ -33,9 +33,9 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 
 # Se agregan las extenciones para vincular los ejecutables con los nodos de ROS que se encuentran en la carpeta launch
-rosbuild_add_executable(Prueba1 src/Prueba1.cpp)
+#rosbuild_add_executable(Prueba1 src/Prueba1.cpp)
 #
-rosbuild_add_executable(detection2 src/detection2.cpp)
+#rosbuild_add_executable(detection2 src/detection2.cpp)
 #
 rosbuild_add_executable(record src/record.cpp)
 
