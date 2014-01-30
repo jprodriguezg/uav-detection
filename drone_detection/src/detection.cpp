@@ -94,7 +94,7 @@ detection_gui::~detection_gui()
 }
 
 
-/*Funcion savenavdata  
+/*Funcion Navdata_Upload  
  
  * Esta funcion se encarga de conectarce a los datos de vuelo provenientes de /ardrone/navdata y guardarlos en un archivo con la fecha y
  * hora del comienzo de la mision
@@ -102,7 +102,7 @@ detection_gui::~detection_gui()
 
 */
 
-void savenavdata(const ardrone_autonomy::NavdataConstPtr navdataPtr){
+void Navdata_Upload(const ardrone_autonomy::NavdataConstPtr navdataPtr){
 
 /* Declaracion del archivo datanav y el caracter datalog en donde se almacenaran los datos de vuelo para guardarlos en datanv */
 FILE *datanav;
@@ -130,7 +130,7 @@ fclose(datanav);
 		strcat(datovely," mm/s ");
 
 		
-		snprintf(datovelz,250,"Linear Velocity y: %f ",(float)navdataPtr->vz);
+		snprintf(datovelz,250,"Linear Velocity z: %f ",(float)navdataPtr->vz);
 		strcat(datovelz," mm/s ");
 
 		
@@ -149,14 +149,14 @@ fclose(datanav);
  	return;
 }
 
-/*Funcion imageCb  
+/*Funcion Image_Upload  
  
  * Esta funcion se encarga de obtener la imagen proveniente del topico /ardrone/image_raw la cual sera utilizada para el programa para 
  * efectuar la deteccion de minas 
 
 */
  
-void imageCb(const sensor_msgs::ImageConstPtr& msg)
+void Image_Upload(const sensor_msgs::ImageConstPtr& msg)
 {
 
 /* Mediante la siguiente instruccione se almacena la imagen obtenida en formato sensor_msgs en una imagen con formato BGR8 */
@@ -174,14 +174,14 @@ void imageCb(const sensor_msgs::ImageConstPtr& msg)
   imageready=1;
 }
 
-/*Funcion removeSmallBlobs 
+/*Funcion Remove_Medium_Objects  antes llamada -> removeSmallBlobs
  
  * Esta funcion se encarga de elimiar de la imagen de entrada im, los objetos con un tamaño menor que sizec con el objetivo de elimar 
  * ruido de la imagen
 
 */
-
-void removeSmallBlobs(cv::Mat im, double sizec){
+//**********************************************
+void Remove_Medium_Objects(cv::Mat& im, double sizec){
 	/* Declaracion de los vectores contours y hierarchy */
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
@@ -203,14 +203,14 @@ void removeSmallBlobs(cv::Mat im, double sizec){
     	}
 }
 
-/*Funcion Suma_Pixeles
+/*Funcion Pixels_Sum antes llamada ->Suma_Pixeles
  
  * Esta funcion suma el numero de pixeles blancos que se encuentran en la imagen de entrada im, para realizar esta accion se recorre la 
  * imagen mediente 2 ciclos que van hasta el largo y ancho de la imagen (h y w)  que son entradas de la funcion
 
 */
 
-int Suma_Pixeles(cv::Mat im, int h, int w) {
+int Pixels_Sum(cv::Mat im, int h, int w) {
 	/* Se declara la funcion auxiliarim que es del tipo IplImage para utilizar la funcion cVGet2D() y la variable s del tipo CVScalar */
 	IplImage auxiliarim = im;
 	CvScalar s;
@@ -229,14 +229,14 @@ int Suma_Pixeles(cv::Mat im, int h, int w) {
 	return pixelesblancos;
 }
 
-/*Funcion Encontrar_Contorno
+/* Funcion Biggest_Area antes llamada ->Encontrar_Contorno
  
  * Esta función analiza todas las áreas de los contornos de la imagen adquirida (im) para entregar en la variable AuxiliarArea el area mas    
  * grande encontrada, junto a su posicion (l) en la variable contours 
 
 */
 
-double Encontrar_Contorno(cv::Mat im){
+double Biggest_Area(cv::Mat im){
 	/* Se crean e inicializan las variables AuxiliarArea, contours y hierarchy */
 	double AuxiliarArea = 0;
  	vector<vector<Point> > contours;
@@ -258,7 +258,7 @@ double Encontrar_Contorno(cv::Mat im){
 	return AuxiliarArea;
 }
 
-int Error_5(int h, int w, Mat IN){
+int Intensity_Classification(int h, int w, Mat IN){
 // Suprimir Pasto
 	int balde_green = 0, balde_blue = 0, balde_red =0, Resultado =0; 
 	for( int i = 0; i < h; i++ )
@@ -291,27 +291,12 @@ int Error_5(int h, int w, Mat IN){
 		return Resultado = 0; 
 }
 
+void Image_Filtering(cv::Mat& IM, cv::Mat& IMCOriginal, cv::Mat& IMfinal,cv::Mat& IMfiltrada, double& AuxiliarArea, int& height , 
+int& weight, int& l){
 
-/*Funcion deteccion
- 
- * Esta función analiza realiza la deteccion de las minas a partir de la imagen proporcionada por el UAV (entrada image, ademas 
-   almacena en un archivo los diferentes errores generados en la funcion 
 
-*/
-
-void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
-	/* Se clona la imagen adquirida (im) para que no sea modificada por el proceso de Deteccion */
-	Mat IM=imag.clone();
-	/* Se Comprueba que la imagen clonada a IM no sea vacia */
-	if (IM.empty()) 
-	{
-		/* Si se cumple la condicion se publica el siguiente mensaje */
-		cout << "Error : Imagen prueba no se pudo cargar..!!" << endl;
-        	//system("pause"); //wait for a key press
-		//return -1;
-	}
-  	
-	Mat IM_GRAY, IMfiltrada, IM_ERODE;
+	// Le quite el mat IMfiltrada y la agrege como entrada ---------------
+	Mat IM_GRAY, IM_ERODE;
 	/* Cambiar Imagen Original IM a escala de Grises */
 	cvtColor(IM, IM_GRAY, CV_RGB2GRAY);
 	//Cuando cvtColor no quiera funcionar, usar: Mat IM_GRAY = imread(image,IMREAD_GRAYSCALE);
@@ -323,8 +308,8 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 	/* Aplicar la funcion Erode (erosíon) a la Imagen IMbin */
 	erode(IMbin, IM_ERODE, disco);
 	Mat IMpos = IM_ERODE.clone();
-	/* Se remueven los objetos medianos con removeSmallBlobs() */
-	removeSmallBlobs(IMpos,5000);
+	/* Se remueven los objetos medianos con Remove_Medium_Objects() */
+	Remove_Medium_Objects(IMpos,5000);
 	/* Se crea una estrucutra morfologica (elipse) para utilizar la funcion erode */
 	Mat disco1 = getStructuringElement(MORPH_ELLIPSE, Size(4,4));
 	/* Se recupueran los trozos de imagen perdidos al utilizar erode en los objetos grandes */
@@ -334,42 +319,46 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 	
 	IplImage IMB = IM;
 	/* Se encuentra el ancho (w) y alto (h) de la imagen */
-	int h = cvGetDimSize(&IMB, 0);
-	int w = cvGetDimSize(&IMB, 1);
+	height = cvGetDimSize(&IMB, 0);
+	weight = cvGetDimSize(&IMB, 1);
 
 	int PixelesBlancos = 0; 
 
-	/* Se encuentra el numero de pixeles blancos en la imagen utilizando la funcion Suma_Pixeles */
-	PixelesBlancos=Suma_Pixeles(IMfiltrada,h,w);
+	/* Se encuentra el numero de pixeles blancos en la imagen utilizando la funcion Pixels_Sum */
+	PixelesBlancos=Pixels_Sum(IMfiltrada,height,weight);
 
 	/* Las siguientes instrucciones son utilizadas si el proceso de filtrado anterior borro de la imagen todos los objetos que tienen 
 	   un tamaño semejante al de una mina, si se cumple la condicion se vuelve a efectuar el proceso de filtrado pero esta vez
-	   utilizando un valor menor en removeSmallBlobs() */
+	   utilizando un valor menor en Remove_Medium_Objects() */
 
 	if (PixelesBlancos>501 & PixelesBlancos<=5000)
 	{
 	IMpos = IM_ERODE.clone();
-	removeSmallBlobs(IMpos,2000);
+	Remove_Medium_Objects(IMpos,2000);
 	Mat disco1 = getStructuringElement(MORPH_ELLIPSE, Size(6,6));
 	dilate(IMpos, IMfiltrada, disco1);
 	}
 	else if (PixelesBlancos<500)
 	{
 	IMpos = IM_ERODE.clone();
-	removeSmallBlobs(IMpos,500);
+	Remove_Medium_Objects(IMpos,500);
 	Mat disco1 = getStructuringElement(MORPH_ELLIPSE, Size(6,6));
 	dilate(IMpos, IMfiltrada, disco1);
 	}
 	
 
 	/* Borrar Areas pequeñas, para dejar la mas grande, note que para este proceso no se utiliza encontrar la fucion
-	   Encontrar_Contorno porque en este caso se necesita extraer la posicion del contorno y  llenar las variables
+	   Biggest_Area porque en este caso se necesita extraer la posicion del contorno y  llenar las variables
 	   center y radius, para su futuro uso en el programa */
+
+	
 	Mat ContornoImagen = IMfiltrada.clone();
   	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
-	double AuxiliarArea=0;
-	int l=0;
+
+	// Elimine la asignacion de AuxiliarArea y l de este codigo
+	//double AuxiliarArea=0;
+	//int l=0;
 
 	findContours( ContornoImagen, contours, hierarchy, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
 
@@ -396,8 +385,8 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 	/* Adicionalmente se clona IMCvacio en IMCRelleno */
 	Mat IMCRelleno = IMCvacio.clone();
 	/* Se clona la imagen IM en IMfinal */
-	Mat IMfinal = IM.clone();
-	Scalar color = CV_RGB(255,255,255);
+	IMfinal = IM.clone();
+	
 
 	/* Mediante drawContours se grafica en IMCvacio la el contorno mas grande */
 	drawContours( IMCvacio, contours, l, CV_RGB(255,255,255), 2, 8, hierarchy, 0, Point() );
@@ -411,17 +400,20 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 
 	/* En esta parte se clona en IMCOriginal la imagen IMCRelleno para posteriormente asignarcela  IMCOriginalaux del tipo IplImage,
  	adicionalemte en IMaux se clona IM y es enviada a IMaux2. A continuacion se recorre la imagen para asignar en IMCOriginalaux el valor
+
  	del pixel de la posicion i,k  de IMaux2. La idea de este procedimiento es poner en la imagen llena de pixeles negros, los pixeles
+
  	originales de la mina para obtener una imagen en donde se observe unicamente la mina o el objeto mas grande de la imagen original con 		sus respectivos colores */
 
-	Mat IMCOriginal = IMCRelleno.clone();
+	IMCOriginal = IMCRelleno.clone();
+	
 	IplImage IMCOriginalaux= IMCOriginal;
 	Mat IMaux = IM.clone();
 	IplImage IMaux2= IMaux;
 	CvScalar s2, s3;
-	for( int i = 0; i < h; i++ )
+	for( int i = 0; i < height; i++ )
 	{ 
-	  for( int k = 0; k < w; k++ )
+	  for( int k = 0; k < weight; k++ )
        	  { 
 		s2=cvGet2D(&IMCOriginalaux,i,k);
 		s3=cvGet2D(&IMaux2,i,k);
@@ -429,17 +421,28 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 		cvSet2D(&IMCOriginalaux,i,k,s3);
        	  }
      	}
-	
-	
-	/* En esta parte del codigo se realiza el tratamiento de cada una de las mascaras o template del sistema */
+
+}
+
+
+/*Funcion detection_landmines -> deteccion
+ 
+ * Esta función analiza realiza la deteccion de las minas a partir de la imagen proporcionada por el UAV (entrada image, ademas 
+   almacena en un archivo los diferentes errores generados en la funcion 
+
+*/
+
+void Image_Features(cv::Mat IMCOriginal,cv::Mat& Mascara,double& CAMascara, double& CAMascara2,double& CARMascara, double& CARMascara2, Point& maxLoc){
+
+/* En esta parte del codigo se realiza el tratamiento de cada una de las mascaras o template del sistema */
 	
 	/* Se generan las variables donde se almacenaran las mascaras */
 	Mat binMascara, binMascara2; 
 	/* Se cargan las mascaras a partir de imread() */
 	/* Mascara gris */
-	Mat Mascara = imread("/home/caro/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m1.jpg", CV_LOAD_IMAGE_UNCHANGED);
+	Mascara= imread("/home/dell-077/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m1.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	/* Mascara Azul */
-	Mat Mascara2 = imread("/home/caro/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m3.jpg", CV_LOAD_IMAGE_UNCHANGED);
+	Mat Mascara2 = imread("/home/dell-077/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m3.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	/* Se utiliza un condicional para enviar un error si no se cargaron las mascaras */
 	if (Mascara.empty() || Mascara2.empty()){
 		cout << "Error : Imagen mascara no se pudo cargar..!!" << endl;
@@ -457,7 +460,7 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 
 	Mat result, result2;
 	double minVal; double maxVal;
-	Point minLoc, maxLoc, matchLoc;
+	Point minLoc;
 	
 	/* Se utiliza la funcion matchtemplate para hacer la comparacion entre IMCOriginal y la Mascara, el resultado lo guardo en result */
 	matchTemplate(IMCOriginal, Mascara, result, CV_TM_CCORR);
@@ -478,15 +481,19 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 	/* Se encuenntran los contronos y valores de las areas de cada mascara */
 	
 	/*Mascara  */
-	double CAMascara = Encontrar_Contorno(binMascara); // auxiliar2
+	CAMascara = Biggest_Area(binMascara); // auxiliar2
 	/* Mascara azul */
-	double CAMascara2 = Encontrar_Contorno(binMascara2); // auxiliar2
+	CAMascara2 = Biggest_Area(binMascara2); // auxiliar2
 	//Matchtemplate
-	double CARMascara = Encontrar_Contorno(resultbin); // auxiliar 1
+	CARMascara = Biggest_Area(resultbin); // auxiliar 1
 	//Matchtemplate2
-	double CARMascara2 = Encontrar_Contorno(resultbin2); // auxiliar 1
+	CARMascara2 = Biggest_Area(resultbin2); // auxiliar 1
+}
 
-	/* En esta seccion de codig se calculan los errores a partir de los cuales se determina si el objeto detecatado es o no una mina */
+void Classification_Process(cv::Mat& IM,cv::Mat& IMCOriginal,cv::Mat& IMfinal, cv::Mat& Mascara, cv::Mat IMfiltrada,double CAMascara, double CAMascara2, double CARMascara, double CARMascara2, double AuxiliarArea, int height , int weight, Point& maxLoc, int l, char* Directorio, 
+char* Directorio_Error){
+
+	/* En esta seccion de codigo se calculan los errores a partir de los cuales se determina si el objeto detecatado es o no una mina */
 
 	
 	/* Calculo de Error1, error porcentual entre  el area de la imagen y la de la mascara1 */	
@@ -499,21 +506,46 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 	float Error4 = abs((CARMascara2 - CAMascara2)/CAMascara2)*100;
 	/* Calculo de error 5 que depende de la intensidad de los pixeles en la escala RGB de la imagen, en comparacion con 
 	   con los parametros encontrados a partir de la base de datos de fotos con minas*/
-	int Error5 = Error_5(h,w,IMCOriginal);
+	int Error5 = Intensity_Classification(height,weight,IMCOriginal);
 
 	/* Para determianar si el objeto detectado es mina o no, se deben cumplir una serie de condiciones dadas por logica 
 	   convinatoria, si el objeto es una mina, se pinta un rectangulo rojo y un circulo blanco al rededor de esta para resaltar su 
 	   su ubicacion */
 	/* Estos if determinan si la imagen es o no  una mina */
-	if ((Error2 <= 15 || Error1 <=11 || Error3 <= 11 || Error4 <=15) 
-	/*&& (Error5 == 1)*/ /*&& (PAOriginal >= (PMascara2-(PMascara2*0.1)))*/){
-		if (((Error2+Error1) <=100) || ((Error3+Error4) <=100)){
+
 	
-			matchLoc = maxLoc;
+	Scalar color = CV_RGB(255,255,255);
+
+	if ((Error2 <= 15 || Error1 <=11 || Error3 <= 11 || Error4 <=15) && (Error5 == 1) /*&& (PAOriginal >= (PMascara2-(PMascara2*0.1)))*/){
+		if (((Error2+Error1) <=100) || ((Error3+Error4) <=100)){
+
+			
+				Mat ContornoImagen = IMfiltrada.clone();
+			  	vector<vector<Point> > contours;
+				vector<Vec4i> hierarchy;
+				
+				findContours( ContornoImagen, contours, hierarchy, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+
+				vector<vector<Point> > contours_poly( contours.size() );
+				vector<Point2f>center( contours.size() );
+				vector<float>radius( contours.size() );
+
+				for (int i = 0; i < contours.size(); i++)
+				{ 
+					/* Estas dos lineas de codigo guardan en las variables center y radius el centro y radio de la mina 						para posteriormente graficar un circulo al rededor de la mina detectada */			
+					approxPolyDP( Mat(contours[i]), contours_poly[i], 3, true );
+					minEnclosingCircle( contours_poly[i], center[i], radius[i]);          
+				    }
+
+	
+			Point matchLoc = maxLoc;
 			/* Creacion del rectangulo rojo */
 			rectangle(IMfinal,matchLoc,Point(matchLoc.x + Mascara.cols,matchLoc.y + Mascara.rows),CV_RGB(255,0,0),2,8,0);
 			/* Creacion del circulo blanco */
+			
+			
 			circle( IMfinal, center[l], (int)radius[l], color, 2, 8, 0 );
+
 			/* La variable contador es utilizada para asignarl un numero a la imagen con la mina detectada, la cual sera guardada
 			   en la carpeta minas, en una carpeta con el nombre y fecha del comienzo de la mision. El nombre del mina vine dado
 			   por la variable contador y la palabra IM */
@@ -543,13 +575,13 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
 		}
 		else{
 		/* Si no se cumple la condicion 2 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
-		putText(IMfinal, "Mina No Detectada", cvPoint(h/4,w/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
+		putText(IMfinal, "Mina No Detectada", cvPoint(height/4,weight/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
 		mina = 0;
 		} /*Cierre del else 2 */
 	} /*Cierre del if 1 */
 	else{
 	/* Si no se cumple la condicion 1 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
-	putText(IMfinal, "Mina No Detectada", cvPoint(h/4,w/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
+	putText(IMfinal, "Mina No Detectada", cvPoint(height/4,weight/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
 	mina = 0;
 	} /*Cierre del else 1 */
 
@@ -560,19 +592,54 @@ void deteccion(cv::Mat imag, char* Directorio, char* Directorio_Error){
  	char datalogError[512];
 	//strcpy(datalog,"log.txt");
 
-
+			
 			if ((dataError=fopen(Directorio_Error,"a+"))!=NULL)
-			/* Con sprintf() se guarda en datalog los datos de error */
+			//Con sprintf() se guarda en datalog los datos de error 
 			sprintf(datalogError,"%d %d %f %f %f %f %d \n",contador2,contador,Error1,Error2,Error3,Error4,mina);
 			fprintf(dataError,"%s \n", datalogError);
-			/* Cierra datanav con los datos de error guardados */
-			fclose(dataError);
+			//Cierra datanav con los datos de error guardados 
+			fclose(dataError); 
+			
+}
+
+
+
+void detection_landmines(cv::Mat imag, char* Directorio, char* Directorio_Error){
+
+	/* Se clona la imagen adquirida (im) para que no sea modificada por el proceso de Deteccion */
+	Mat IM=imag.clone();
+	/* Se Comprueba que la imagen clonada a IM no sea vacia */
+	if (IM.empty()) 
+	{
+		/* Si se cumple la condicion se publica el siguiente mensaje */
+		cout << "Error : Imagen prueba no se pudo cargar..!!" << endl;
+        	//system("pause"); //wait for a key press
+		//return -1;
+	}
+  	
+
+	Mat IMCOriginal, IMfinal, Mascara,IMfiltrada;
+	int height,weight,radio,l=0;
+	double AuxiliarArea=0,CAMascara,CAMascara2,CARMascara,CARMascara2;
+	Point centro,maxLoc;
+
+
+	Image_Filtering(IM,IMCOriginal,IMfinal,IMfiltrada,AuxiliarArea,height,weight,l);
+
+
+	Image_Features(IMCOriginal,Mascara,CAMascara,CAMascara2,CARMascara,CARMascara2,maxLoc);
+	
+
+	Classification_Process(IM,IMCOriginal,IMfinal,Mascara,IMfiltrada,CAMascara,CAMascara2,CARMascara,CARMascara2,AuxiliarArea,
+	height,weight,maxLoc,l,Directorio,Directorio_Error);
+
 
 	/* Con imshow se genera la ventana "Detection Window" donde se muestra la imagen procesada por detection() */
 	imshow("Detection Window", IMfinal);
 	/* La instruccion waitKey(1) utilizada para mantener visible indefinidamente la imagen publicada */
         waitKey(1); //wait infinite time for a keypress
 }
+
 
 /* main
  
@@ -593,9 +660,9 @@ ros::NodeHandle navdata;
 ros::NodeHandle n;
 
 /* Se crea el suscripto al topico /ardrone/image_raw */
-ros::Subscriber img = camImage.subscribe("/ardrone/image_raw", 5, imageCb);
+ros::Subscriber img = camImage.subscribe("/ardrone/image_raw", 5, Image_Upload);
 /* Se crea el suscripto al topico /ardrone/navdata */
-ros::Subscriber Nav = camImage.subscribe("/ardrone/navdata", 5, savenavdata);
+ros::Subscriber Nav = navdata.subscribe("/ardrone/navdata", 5, Navdata_Upload);
 
 /* Se define la frecuencia de ejecucion de los lazos del programa */
 ros::Rate loop_rate(15);  //simulate 15 fps
@@ -626,16 +693,16 @@ ros::Duration delay = ros::Duration(0.04, 0);
   	timeinfo = localtime (&rawtime);
 	/* Se guarda en las diferentes variables directorio solamente año-mes-dia (%F) para  concaternarlo con la direccion donde 
 	   se creara la carpeta */
-  	strftime (Directorio,80,"/home/caro/fuerte_workspace/sandbox/drone_detection/minas/%F-%R",timeinfo);	
-	strftime (Directorio_Log,100,"/home/caro/fuerte_workspace/sandbox/drone_detection/datos/log_%F-%R.txt",timeinfo);
-	strftime (Directorio_Error,150,"/home/caro/fuerte_workspace/sandbox/drone_detection/datos/Error_%F-%R.txt",timeinfo);	
+  	strftime (Directorio,80,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/minas/%F-%R",timeinfo);	
+	strftime (Directorio_Log,100,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/datos/log_%F-%R.txt",timeinfo);
+	strftime (Directorio_Error,100,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/datos/Error_%F-%R.txt",timeinfo);	
 	/* Crear el directorio en la direccion escrita en "Directorio" */
 	status = mkdir(Directorio, S_IRWXU |S_IRWXG | S_IROTH | S_IXOTH);
 	//int contador = 0;
 
 
 /* Este while solo es utilizado para publicar un error si la imagen no fue cargada, observe que la condicion biene dada por 
-   imageready que cambia de valor en la funcion imageCb */ 
+   imageready que cambia de valor en la funcion Image_Upload */ 
 while(imageready!=1)
 	{ 
 		/* Se declara la variable parada */ 	 
@@ -664,7 +731,7 @@ while(imageready!=1)
 	/* Se activa el delay de ROS */
 	delay.sleep();
 	/* Se envia a IM a la funcion deteccion para realizar el proceso de deteccion y filtrado de ruido */
-	deteccion(cv_ptr->image,Directorio,Directorio_Error);
+	detection_landmines(cv_ptr->image,Directorio,Directorio_Error);
 				/* Declaracion de IM2 para almacenar en esta la imagen obtenida pero en el espacio BGR, esto se 
 				   hace porque la funcion Qimage cambia los colores de la imagen de RGB a BGR */
 				Mat IM2;
