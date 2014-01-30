@@ -114,7 +114,7 @@ while(imageready!=1)
 	
 	/* Las variables os,str y nombre son definidas es para ponerle al video como nombre la fecha y la hora actual  */	
 	ostringstream os;
-	os <<"/home/caro/fuerte_workspace/sandbox/drone_detection/video/"<<Fecha<<".avi";
+	os <<"/home/dell-077/fuerte_workspace/sandbox/drone_detection/video/"<<Fecha<<".avi";
         std::string str = os.str();
 	const char * nombre=str.c_str();
 	
