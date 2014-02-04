@@ -6,7 +6,7 @@
 
   </description>
   <author>Juan Pablo Rodríguez (j_rodriguezg@javeriana.edu.co) Carolina Castiblanco (jenny.castiblanco@javeriana.edu.co)</author>
-  <license>BSD</license>
+  <license>GNU GPL</license>
   <review status="unreviewed" notes=""/>
   <url></url>
   <depend package="std_msgs"/>
