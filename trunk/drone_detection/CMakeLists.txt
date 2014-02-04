@@ -17,6 +17,12 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
+
+# Autors: Juan Pablo Rodríguez (j_rodriguez@javeriana.edu.co)
+#	  Jenny Carolina Castiblanco (jenny.castiblanco@javeriana.edu.co)
+
+
+
 rosbuild_init()
 
 # Se vincula a Qt al paquete para el uso de la GUI
