@@ -1,25 +1,38 @@
- /**
 
- *  detection.cpp
+ /**
+ *  This file is part of drone_detection.
  *
- *  Este archivo es parte de drone_detection
- *  Creado por: Juan Pablo Rodríguez y Carolina Castiblanco
- *  Informacion: j_rodriguezg@javeriana.edu.co   jenny.castiblanco@javeriana.edu.co
+ *  Copyright 2013 Juan Pablo Rodíguez <j_rodriguezg@javeriana.edu.co> (Pontificia Universidad Javeriana - Bogotá)
+ *  Jenny Carolina Castiblanco <jenny.castiblanco@javeriana.edu.co> (Pontificia Universidad Javeriana- Bogotá)
+
+ *  drone_detection is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  drone_detection is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with drone_detection.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/*
  *  
  *  En este archivo se encuentra la funcion detection() que se encarga del proceso de deteccion de minas a partir de 
  *  las imagenes obtenidas del topico /ardrone/image_raw. Ademas publica en la GUI del sistema los datos de vuelo 
  *  provenientes de /ardrone/navdata
- *
- *
- *  This file is in the drone_detection package
- *  Authors: Juna Pablo Rodríguez and Jenny Carolina Castiblanco
- *  Information: j_rodriguezg@javeriana.edu.co   jenny.castiblanco@javeriana.edu.co
+
  *  
  *  In this file, there is the detection() function which performs the landmines detection process from images obteined by the 
  *  /ardrone/image_raw topic.
  *  Adittionally, the flight data from /ardrone/navdata are published in the system GUI.  
 
  */
+
 
 /* Includes para ROS y OpenCV */
 /* Includes for ROS and OpenCV */
@@ -541,10 +554,10 @@ void Image_Features(cv::Mat IMCOriginal,cv::Mat& Mascara,double& CAMascara, doub
 	/* imread() is used to load the images */
 	/* Mascara gris */
 	/* Grey template */
-	Mascara= imread("/home/pc373/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m1.jpg", CV_LOAD_IMAGE_UNCHANGED);
+	Mascara= imread("/home/dell-077/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m1.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	/* Mascara Azul */
 	/* Blue template */
-	Mat Mascara2 = imread("/home/pc373/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m3.jpg", CV_LOAD_IMAGE_UNCHANGED);
+	Mat Mascara2 = imread("/home/dell-077/fuerte_workspace/sandbox/drone_detection/src/Mascaras/1m/Mascara1m3.jpg", CV_LOAD_IMAGE_UNCHANGED);
 	/* Se utiliza un condicional para enviar un error si no se cargaron las mascaras */
 	/* This condition is used to sent a error message if the template don't be load */
 	if (Mascara.empty() || Mascara2.empty()){
@@ -875,9 +888,9 @@ ros::Duration delay = ros::Duration(0.04, 0);
 	   se creara la carpeta */
 	/* The differents variables "directorio" are saved only year-month-day to be concatenaded in the location where folder will 
 	   be created */
-  	strftime (Directorio,80,"/home/pc373/fuerte_workspace/sandbox/drone_detection/minas/%F-%R",timeinfo);	
-	strftime (Directorio_Log,100,"/home/pc373/fuerte_workspace/sandbox/drone_detection/datos/log_%F-%R.txt",timeinfo);
-	strftime (Directorio_Error,100,"/home/pc373/fuerte_workspace/sandbox/drone_detection/datos/Error_%F-%R.txt",timeinfo);	
+  	strftime (Directorio,80,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/minas/%F-%R",timeinfo);	
+	strftime (Directorio_Log,100,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/datos/log_%F-%R.txt",timeinfo);
+	strftime (Directorio_Error,100,"/home/dell-077/fuerte_workspace/sandbox/drone_detection/datos/Error_%F-%R.txt",timeinfo);	
 	/* Crear el directorio en la direccion escrita en "Directorio" */
 	/* This part of code creates the folder on location written in "Directorio" */
 	status = mkdir(Directorio, S_IRWXU |S_IRWXG | S_IROTH | S_IXOTH);
