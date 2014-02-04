@@ -1,16 +1,33 @@
- /**
 
+ /**
+ *  This file is part of drone_detection.
+ *
+ *  Copyright 2013 Juan Pablo Rodíguez <j_rodriguezg@javeriana.edu.co> (Pontificia Universidad Javeriana - Bogotá)
+ *  Jenny Carolina Castiblanco <jenny.castiblanco@javeriana.edu.co> (Pontificia Universidad Javeriana- Bogotá)
+
+ *  drone_detection is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  drone_detection is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with drone_detection.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+
+/**
  *  record.cpp
- *  This file is part of drone_detection
- *  Este archivo es parte de drone_detection
- *  Created by: Juan Pablo Rodríguez y Carolina Castiblanco
- *  Information: j_rodriguezg@javeriana.edu.co   jenny.castiblanco@javeriana.edu.co
- *  
+  
  *  En se encuentra el programa que se encarga de convetir las imagenes provenientes de /ardrone/image_raw en un archivo de 
  *  video .AVI que se almacena en la carpeta Videos de drone_detection
  *  In this file is the program in charge of create a video file with the images from the topic /ardrone/image_raw. The created file has  
  *  .AVI format and is saved in the folder video of drone_detection package.
-
 
  */
 
