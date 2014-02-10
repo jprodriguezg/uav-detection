@@ -257,7 +257,7 @@ void Remove_Medium_Objects(cv::Mat& im, double sizec){
  * Esta funcion suma el numero de pixeles blancos que se encuentran en la imagen de entrada im, para realizar esta accion se recorre la 
    imagen mediente 2 ciclos que van hasta el largo y ancho de la imagen (h y w)  que son entradas de la funcion
  * The main goal of the function is to find the total white pixels of the input image (im). The function scrolls all the image in two cycles. 
-   The function input is the image to analyze, its height (h) and its weight (w). 
+   The function input is the image to analyze, its height (h) and its width (w). 
 
 */
 
@@ -386,7 +386,7 @@ int Intensity_Classification(int h, int w, Mat IN){
 */
 
 void Image_Filtering(cv::Mat& IM, cv::Mat& IMCOriginal, cv::Mat& IMfinal,cv::Mat& IMfiltrada, double& AuxiliarArea, int& height , 
-int& weight, int& l){
+int& width, int& l){
 
 
 	Mat IM_GRAY, IM_ERODE;
@@ -420,13 +420,13 @@ int& weight, int& l){
 	/* Se encuentra el ancho (w) y alto (h) de la imagen */
 	/* The hight and wide parameters are finded */
 	height = cvGetDimSize(&IMB, 0);
-	weight = cvGetDimSize(&IMB, 1);
+	width = cvGetDimSize(&IMB, 1);
 
 	int PixelesBlancos = 0; 
 
 	/* Se encuentra el numero de pixeles blancos en la imagen utilizando la funcion Pixels_Sum */	
 	/* The function Pixels_Sum allows to find the number of white pixel in the image "IMfiltrada" */
-	PixelesBlancos=Pixels_Sum(IMfiltrada,height,weight);
+	PixelesBlancos=Pixels_Sum(IMfiltrada,height,width);
 
 	/* Las siguientes instrucciones son utilizadas si el proceso de filtrado anterior borro de la imagen todos los objetos que tienen 
 	   un tamaño semejante al de una mina, si se cumple la condicion se vuelve a efectuar el proceso de filtrado pero esta vez utilizando
@@ -523,7 +523,7 @@ int& weight, int& l){
 	CvScalar s2, s3;
 	for( int i = 0; i < height; i++ )
 	{ 
-	  for( int k = 0; k < weight; k++ )
+	  for( int k = 0; k < width; k++ )
        	  { 
 		s2=cvGet2D(&IMCOriginalaux,i,k);
 		s3=cvGet2D(&IMaux2,i,k);
@@ -623,7 +623,7 @@ void Image_Features(cv::Mat IMCOriginal,cv::Mat& Mascara,double& CAMascara, doub
 */
 
 
-void Classification_Process(cv::Mat& IM,cv::Mat& IMCOriginal,cv::Mat& IMfinal, cv::Mat& Mascara, cv::Mat IMfiltrada,double CAMascara, double CAMascara2, double CARMascara, double CARMascara2, double AuxiliarArea, int height , int weight, Point& maxLoc, int l, char* Directorio, 
+void Classification_Process(cv::Mat& IM,cv::Mat& IMCOriginal,cv::Mat& IMfinal, cv::Mat& Mascara, cv::Mat IMfiltrada,double CAMascara, double CAMascara2, double CARMascara, double CARMascara2, double AuxiliarArea, int height , int width, Point& maxLoc, int l, char* Directorio, 
 char* Directorio_Error){
 
 	/* En esta seccion de codigo se calculan los errores a partir de los cuales se determina si el objeto detecatado es o no una mina */
@@ -645,7 +645,7 @@ char* Directorio_Error){
 	/* Calculo de error 5 que depende de la intensidad de los pixeles en la escala RGB de la imagen, en comparacion con 
 	   con los parametros encontrados a partir de la base de datos de fotos con minas*/
 	/* Calculus of Error5, this depends of the intensity of  pixels in the RGB scale of the image. The data are compare with  the  		   parameters found using pictures of landmines landmines of data base*/
-	int Error5 = Intensity_Classification(height,weight,IMCOriginal);
+	int Error5 = Intensity_Classification(height,width,IMCOriginal);
 
 	/* Para determianar si el objeto detectado es mina o no, se deben cumplir una serie de condiciones dadas por logica 
 	   convinatoria, si el objeto es una mina, se pinta un rectangulo rojo y un circulo blanco al rededor de esta para resaltar su 
@@ -731,14 +731,14 @@ char* Directorio_Error){
 		else{
 		/* Si no se cumple la condicion 2 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
 		/* If the condition 2 is shown on the scren "Mina no detectada" and the variable mina returns to 0 */
-		putText(IMfinal, "Mina No Detectada", cvPoint(height/4,weight/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
+		putText(IMfinal, "Mina No Detectada", cvPoint(height/4,width/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
 		mina = 0;
 		} /*Cierre del else 2 */ /* Close else 2 */
 	} /*Cierre del if 1 */ /* Close if 1 */
 	else{
 	/* Si no se cumple la condicion 1 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
 	/* If the condition 1 is no satisfy is shown on the screen "Mina no detectada" and the mina variable returns to 0*/
-	putText(IMfinal, "Mina No Detectada", cvPoint(height/4,weight/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
+	putText(IMfinal, "Mina No Detectada", cvPoint(height/4,width/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
 	mina = 0;
 	} /*Cierre del else 1 */ /* Close else  1 */
 
@@ -794,19 +794,19 @@ void detection_landmines(cv::Mat imag, char* Directorio, char* Directorio_Error)
   	
 
 	Mat IMCOriginal, IMfinal, Mascara,IMfiltrada;
-	int height,weight,radio,l=0;
+	int height,width,radio,l=0;
 	double AuxiliarArea=0,CAMascara,CAMascara2,CARMascara,CARMascara2;
 	Point centro,maxLoc;
 
 
-	Image_Filtering(IM,IMCOriginal,IMfinal,IMfiltrada,AuxiliarArea,height,weight,l);
+	Image_Filtering(IM,IMCOriginal,IMfinal,IMfiltrada,AuxiliarArea,height,width,l);
 
 
 	Image_Features(IMCOriginal,Mascara,CAMascara,CAMascara2,CARMascara,CARMascara2,maxLoc);
 	
 
 	Classification_Process(IM,IMCOriginal,IMfinal,Mascara,IMfiltrada,CAMascara,CAMascara2,CARMascara,CARMascara2,AuxiliarArea,
-	height,weight,maxLoc,l,Directorio,Directorio_Error);
+	height,width,maxLoc,l,Directorio,Directorio_Error);
 
 
 	/* Con imshow se genera la ventana "Detection Window" donde se muestra la imagen procesada por detection() */
