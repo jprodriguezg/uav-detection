@@ -197,8 +197,16 @@ while(imageready!=1)
 	    /* Si no se cumple la condicion se continua con el ciclo */
 	    /* If the condition is not satisfy the loop continues */
 	    else {
+		
+		/* Se hace una llamada a las variables del suscriptor utilizado */
+		/* The callback at the subscriber is activated*/
 		ros::spinOnce();
-	        loop_rate.sleep();
+		
+		/* Se ejecuta un delay para tener una frecuencia de operacion de 15 Hz/
+		/* A delay is activated to obtain a frequency of execution of 15 Hz */
+		loop_rate.sleep();
+		
+		
 		}
 	    }
 cout << "Fin del video!!!" << endl;    
