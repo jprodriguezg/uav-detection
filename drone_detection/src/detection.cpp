@@ -51,6 +51,8 @@
 #include <sensor_msgs/image_encodings.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include "std_msgs/String.h"
+#include <sstream>
 
 /* Includes para el funcionamiento de la GUI con Qt4 */
 /* Includes for the GUI operation with Qt4*/
@@ -86,11 +88,11 @@ namespace enc = sensor_msgs::image_encodings;
 static const char WINDOW[] = "PUJ";
 cv_bridge::CvImagePtr cv_ptr;
 int imageready=0;
-int contador=0;
+int contador=0; /* Contador contiene el numero de minas detectadas */
 char filename;
 char Directorio_Log [100];
-int mina = 0;
-int contador2=0;
+int mine = 0;
+int contador2=0; /* Contador2 es utilizada para determinar cuantos ciclos se realizaron durante el proceso */
 string Nombreimage2;
 
 /* Variables donde se almacenaran los datos de navegacion obtenidos */
@@ -719,27 +721,27 @@ char* Directorio_Error){
 			   the direction with the name whish  will be save */
 			imwrite(Nombreimage, IM, compression_params);
 			imwrite(Nombreimage2, IMfinal, compression_params);
-			/* A la variable mina 1 se le asigna el valor de 1 para que en el archivo de errores se indique que esos datos 
+			/* A la variable mine 1 se le asigna el valor de 1 para que en el archivo de errores se indique que esos datos 
 			   corresponden a una mina detectada */
-			/*  The variable mina takes a 1 to indicate in the error files that this data corresponds at a landmine*/
-			mina = 1;
+			/*  The variable mine takes a 1 to indicate in the error files that this data corresponds at a landmine*/
+			mine = 1;
 			/* Se asigna a la variable datomina la variable contador para publicar en la GUI el numero de minas detectadas */
 			/* The contador variable is assign to the variable datomina to publish on GUI the number of landmines detected */
 			snprintf(datomina,250,"Landmines detected: %d ",contador);
 
 		}
 		else{
-		/* Si no se cumple la condicion 2 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
-		/* If the condition 2 is shown on the scren "Mina no detectada" and the variable mina returns to 0 */
+		/* Si no se cumple la condicion 2 se muestra en pantalla el letrero "Mina no detectada" y la variable mine se pone en 0 */
+		/* If the condition 2 is shown on the scren "Mina no detectada" and the variable mine returns to 0 */
 		putText(IMfinal, "Mina No Detectada", cvPoint(height/4,width/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
-		mina = 0;
+		mine = 0;
 		} /*Cierre del else 2 */ /* Close else 2 */
 	} /*Cierre del if 1 */ /* Close if 1 */
 	else{
-	/* Si no se cumple la condicion 1 se muestra en pantalla el letrero "Mina no detectada" y la variable mina se pone en 0 */
-	/* If the condition 1 is no satisfy is shown on the screen "Mina no detectada" and the mina variable returns to 0*/
+	/* Si no se cumple la condicion 1 se muestra en pantalla el letrero "Mina no detectada" y la variable mine se pone en 0 */
+	/* If the condition 1 is no satisfy is shown on the screen "Mina no detectada" and the mine variable returns to 0*/
 	putText(IMfinal, "Mina No Detectada", cvPoint(height/4,width/2), FONT_HERSHEY_COMPLEX_SMALL, 3, cvScalar(0,0,255), 1, CV_AA);
-	mina = 0;
+	mine = 0;
 	} /*Cierre del else 1 */ /* Close else  1 */
 
 	/* Se crea el archivo dataError donde se almacenaran los diferentes datos de los errores del algoritmo, cada vez que este sea
@@ -755,7 +757,7 @@ char* Directorio_Error){
 			if ((dataError=fopen(Directorio_Error,"a+"))!=NULL)
 			/* Con sprintf() se guarda en datalog los datos de error */
 			/* The error data are saved in datalog using sprintf() function */
-			sprintf(datalogError,"%d %d %f %f %f %f %d \n",contador2,contador,Error1,Error2,Error3,Error4,mina);
+			sprintf(datalogError,"%d %d %f %f %f %f %d \n",contador2,contador,Error1,Error2,Error3,Error4,mine);
 			fprintf(dataError,"%s \n", datalogError);
 			/* Cierra datanav con los datos de error guardados */
 			/* Datanv is close with the saved data */
@@ -834,8 +836,7 @@ int main( int argc, char** argv ){
 ros::init(argc, argv,"drone_detection_GUI");
 
 /* Se definen algunas variables de manejo de ROS para su posterior uso en el programa */
-/* Some ROS variables are created */
-ros::NodeHandle nh_;
+/* These Handles are used to initialize the node, also the handrles are used to develop some process in the program */
 ros::NodeHandle camImage;
 ros::NodeHandle navdata;
 ros::NodeHandle n;
@@ -847,13 +848,18 @@ ros::Subscriber img = camImage.subscribe("/ardrone/image_raw", 5, Image_Upload);
 /* A subscriber is created at topic /ardrone/navdata */
 ros::Subscriber Nav = navdata.subscribe("/ardrone/navdata", 5, Navdata_Upload);
 
+/* Se crea  Publicadores para el paquete de Ros */
+ros::Publisher landmines_detected = n.advertise<std_msgs::String>("/drone_detection/landmines_detected", 1000);
+ros::Publisher detection_process = n.advertise<std_msgs::String>("/drone_detection/detection_process", 1000);
+
 /* Se define la frecuencia de ejecucion de los lazos del programa */
-/* The processing frequency is defined  */
-ros::Rate loop_rate(15);  //simulate 15 fps
+/* The processing frequency of loop is defined, hence this frequency is only used on the begin of program  */
+ros::Rate loop_rate(15);   
 
 /* Se declara un inicio de tiempo en ROS para poder definir un delay exacto en el programa */
 /* TThe time of ROS is activated to achieve a exact delay in the program */
 ros::Time begin = ros::Time::now();
+
 /* Se define un delay  de 0.04 segundos para que cada iteracion del progama se practiamente 0.25 s, normalmente el programa sin el delay
    se demora 0.21 segundos por ciclo */
 /* A delay of 0.04 seconds is created to achieve a final time of processing of 0.25 seconds */
@@ -931,9 +937,7 @@ while(imageready!=1)
 	/* Se guarda la imagen obtenida con el drone en la variable IM */
 	/* The obtained image from the drone is saved in variable IM*/
 	Mat IM=cv_ptr->image;
-	/* Se activa el delay de ROS */
-	/* The ROS delay is activated*/
-	delay.sleep();
+	
 	/* Se envia a IM a la funcion deteccion para realizar el proceso de deteccion y filtrado de ruido */
 	/* The IM variable is sent to the function detection_landmines to perform the detection process */
 	detection_landmines(cv_ptr->image,Directorio,Directorio_Error);
@@ -984,19 +988,39 @@ while(imageready!=1)
 				/* Finalmente se carga en la GUI la foto con la ultima mina detectada */
 				/* Finally the image with the last detected landmine is upload on the GUI */
 				w.ui.labelfoto->setPixmap(QPixmap::fromImage(imageoutmina));
-				} 
+				} /* if ends */
+
+
+	/* Aca defino un par de variables para poder publicar los valores almacenados en mine y contador*/
+	/* Two variables are defined to publish the saved values in mine and contador */
+	std_msgs::String msg_number_landmines, msg_detection_process ;
+ 	std::stringstream ss, ss2;
+	/* Se hace un string para la variable mine y contador respectivamente */
+	/* The strings are created for the variables mine and contador respectively */
+ 	ss << contador;
+	ss2 << mine;
+  	msg_number_landmines.data = ss.str();
+	msg_detection_process.data = ss2.str();
+	/* Se publica en los respectivos publicadores las variables mine y contador */
+	/* The variables saved in the stings are published using the publishers defined at the begin of the program */
+	landmines_detected.publish(msg_number_landmines);
+	detection_process.publish(msg_detection_process);
 	
+	/* Se ejecuta un delay para tener un tiempo de ejecucion en el lazo de 250 ms*/
+	/* A delay is activated to obtain a time of execution per loop of 250 ms */
+	delay.sleep();
+	/* Se hace una llamada a las variables del suscriptor utilizado */
+	/* The callback at the subscriber is activated*/
 	ros::spinOnce();
-	loop_rate.sleep();
 	/* Esta condicion es utilizada para detener el programa al oprimir la tecla r */
 	/* This condition is used to stop the program when the user press the r key */
 	if(parada=='r'){
 		cout << "Adios!" << endl ;
 		break;
-		}
-  } 
+		} /* If ends */
+  }/* For ends*/ 
 
 return 0;
 /* Nota el comando que le indica al Drone que active la imagen de la camara inferior  es "rosservice call /ardrone/togglecam" */
 /* "rosservice call  /ardrone/togglecam" is the command which actives the image from bottom camera in the AR Drone 2 */
-}
+} 
