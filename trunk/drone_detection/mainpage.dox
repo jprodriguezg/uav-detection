@@ -12,31 +12,28 @@ mainpage.dox
 Este archivo hace parte de drone_detection
 Autores: Juan Pablo Rodríguez y Carolina Castiblanco
 Informacion: j_rodriguezg@javeriana.edu.co   jenny.castiblanco@javeriana.edu.co
- 
--->
+  
+Overview of drone_detection.
 
-<!-- 
-Provide an overview of your package.
+This package has aims to help in the task of landmine detection using the images obtained from the bottom camera of AR Drone 2.0
+The package contains 4 launch files.
 Este paquete es tiene como objetivo la deteccion de minas anitpersona utilizando el AR Drone 2.0. 
-Contiene 6 archivos launch que se vinculan con los ejecutables del paquete y ejecutables de tum_ardrone y ardrone_automoy
+Contiene 4 archivos launch que se vinculan con los ejecutables del paquete y ejecutables de tum_ardrone y ardrone_automoy
 
 navigation.launch
+It is in charge of execute the ardrone_driver of ardrone_autonomy to perform the conection between the AR Drone and the base station
 Ejecuta el ardrone_driver del paquete ardrone_autonomy para realizar la conexion entre el AR Drone y la estacion base
 
-test.launch
-Ejecuta el algoritmo de deteccion, utilizando algunas fotos de minas antipersona (latas) probenientes de la base de datos Prueba 1m
-
-juan.launch
-Ejecuta el algoritmo para la deteccion en tiempo real de las minas, utilizando la camara del ardrone 2.0
-(Esta es la version de Juan Pablo en donde se incluye el algorimo de deteccion en la funcion de lectura y transformacion de imagen "imagCb"
-
 detection.launch
-Ejecuta el algoritmo final para la deteccion de minas, utilizando la camara del ardrone 2.0
+It executes the algorithm in charge of developing the detection landmine task
+Ejecuta el algoritmo  para la deteccion de minas, utilizando la camara del ardrone 2.0
 
 record.launch
+It executes the algortithm in charge of developing a file video of the mission
 Ejecuta el algoritmo para grabar en un video .AVI todo lo que se ve a con la camara que se este utilizando en el drone
 
 control.launch
+It executes the ardrone_autopilot and drone_gui from tum_ardrone package 
 Ejecuta drone_autopilot y drone_gui del paquete tum_ardrone para el envio de comandos de control de vuelo al AR Drone
 
 -->
