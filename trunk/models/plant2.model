@@ -1,0 +1,31 @@
+<!-- 
+
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co
+
+The collada file was downloaded from the website of SketchUp
+URL: https://3dwarehouse.sketchup.com/model.html?id=c8214adcc36a09f1a2262cfacf083269
+-->
+
+<gazebo version="1.0">
+  <model name="plant2" static="true">
+    <origin pose="0.0 0.0 0.0 0.0 0.0 0.0" />
+
+    <link name="plant2_link">
+      <visual name="plant2_visual">
+        <geometry>
+          <mesh filename="plant2.dae" scale="0.05 0.05 0.05" />
+        </geometry>
+      </visual>
+
+      <collision name="plant2_collision">
+        <geometry>
+          <mesh filename="stl/plant2.stl" scale="0.05 0.05 0.05" />
+        </geometry>
+      </collision-->
+
+    </link>
+  </model>
+</gazebo>
