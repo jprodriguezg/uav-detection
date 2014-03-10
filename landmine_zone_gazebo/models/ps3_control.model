@@ -1,0 +1,31 @@
+<!-- 
+
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co
+
+The collada file was downloaded from the website of SketchUp
+URL: https://3dwarehouse.sketchup.com/model.html?id=43ff3ca7eba9381e808ba9235495a934
+-->
+
+<gazebo version="1.0">
+  <model name="ps3_control" static="true">
+    <origin pose="0.0 0.0 0.0 0.0 0.0 0.0" />
+
+    <link name="ps3_control_link">
+      <visual name="ps3_control_visual">
+        <geometry>
+          <mesh filename="ps3_control.dae" scale="0.0254 0.0254 0.0254" />
+        </geometry>
+      </visual>
+
+      <collision name="ps3_control_collision">
+        <geometry>
+          <mesh filename="stl/ps3_control.stl" scale="0.0254 0.0254 0.0254" />
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</gazebo>
