@@ -1,0 +1,31 @@
+<!-- 
+
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co
+
+The collada file was downloaded from the website of SketchUp
+URL: https://3dwarehouse.sketchup.com/model.html?id=b8a634a98a8b684cac6594f6d0d3d7c2
+-->
+
+<gazebo version="1.0">
+  <model name="traffic_bollard" static="true">
+    <origin pose="0.0 0.0 0.0 0.0 0.0 0.0" />
+
+    <link name="traffic_bollard_link">
+      <visual name="traffic_bollard_visual">
+        <geometry>
+          <mesh filename="traffic_bollard.dae" scale="0.0254 0.0254 0.0254" />
+        </geometry>
+      </visual>
+
+      <collision name="traffic_bollard_collision">
+        <geometry>
+          <mesh filename="stl/traffic_bollard.stl" scale="0.0254 0.0254 0.0254" />
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</gazebo>

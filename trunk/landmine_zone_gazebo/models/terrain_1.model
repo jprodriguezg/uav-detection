@@ -1,0 +1,51 @@
+<!-- 
+
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co
+
+The collada file was created for the package landmine_zone_gazebo by their authors.
+
+-->
+
+<gazebo version="1.0">
+  <model name="heightmap" static="true">
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <heightmap filename="../heightmaps/landmine_zone_heightmap.png" size="25 25 0.3" origin="0 0 0"/>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <heightmap filename="../heightmaps/landmine_zone_heightmap.png" size="25 25 0.3" origin="0 0 0">
+              <texture>
+                  <diffuse>grass_diffusespecular.png</diffuse>
+                <normal>grass_normal.png</normal>
+                <size>2.5</size>
+              </texture>
+              <texture>
+		<diffuse>fungus_diffusespecular.png</diffuse>
+                <normal>fungus_normal.png</normal>
+                <size>5.0</size>
+              </texture>
+              <texture>
+		<diffuse>dirt_diffusespecular.png</diffuse>
+                <normal>dirt_normal.png</normal>
+                <size>5</size>
+              </texture>
+              <blend>
+                <min_height>0</min_height>
+                <fade_dist>0.25</fade_dist>
+              </blend>
+              <blend>
+                <min_height>0.2</min_height>
+                <fade_dist>0.3</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+</gazebo>
