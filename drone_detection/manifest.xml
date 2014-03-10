@@ -2,7 +2,8 @@
   <description brief="drone_detection">
 
      drone_detection
-     Paquete de ROS para utilizado para la deteccion de minas antipersona usandi algorimos de vision
+     ROS Package used for the detection of landmines using vision algorithm
+     Paquete de ROS  utilizado para la deteccion de minas antipersona usando algorimos de vision
 
   </description>
   <author>Juan Pablo Rodríguez (j_rodriguezg@javeriana.edu.co) Carolina Castiblanco (jenny.castiblanco@javeriana.edu.co)</author>
