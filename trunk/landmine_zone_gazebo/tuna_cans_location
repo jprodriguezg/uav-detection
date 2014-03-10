@@ -1,0 +1,38 @@
+
+/**
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co>
+**/
+
+Tuna Cans Location
+
+In this file are the location of landmines in the (x y) axis for terrains 1,2,3 and 4
+
+Zone 1
+
+Zone 1
+(2.0 2.0)
+(6.0 7.5) 
+(1.0 8.5)
+(7.5 4.0) 
+
+Zone 2 
+
+(8.50000 -4.0)
+(5.0 -9.0) 
+(1.0 -5.2)
+(4.0 -5.0)
+
+(-1.5 5.0)
+(-5.0 9.5)
+(-7.0 5.4)
+(-9.5 2.0)
+
+Zone 4
+(-9.0 -3.0) 
+(-8.0 -2.0)
+(-1.5 -7.0) 
+(-9.5 -9.5)
+

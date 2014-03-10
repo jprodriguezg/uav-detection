@@ -1,0 +1,205 @@
+<?xml version ='1.0'?>
+<gazebo version ='1.0'>
+<world name='default'>
+
+<!-- 
+  This file is part of landmine_zone_gazebo.
+
+  Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+           Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co>
+-->
+
+<!-- A global light source -->
+    <include filename="sun.light"/>
+
+<model name="heightmap" static="true">
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <heightmap filename="../heightmaps/landmine_zone_heightmap.png" size="25 25 0.3" origin="0 0 0"/>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <heightmap filename="../heightmaps/landmine_zone_heightmap.png" size="25 25 0.3" origin="0 0 0">
+              <texture>
+                  <diffuse>grass_diffusespecular.png</diffuse>
+                <normal>grass_normal.png</normal>
+                <size>2.5</size>
+              </texture>
+              <texture>
+		<diffuse>fungus_diffusespecular.png</diffuse>
+                <normal>fungus_normal.png</normal>
+                <size>5.0</size>
+              </texture>
+              <texture>
+		<diffuse>dirt_diffusespecular.png</diffuse>
+                <normal>dirt_normal.png</normal>
+                <size>5</size>
+              </texture>
+              <blend>
+                <min_height>0</min_height>
+                <fade_dist>0.25</fade_dist>
+              </blend>
+              <blend>
+                <min_height>0.2</min_height>
+                <fade_dist>0.3</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Furniture -->
+    <include filename="tent.model" model_name="tent" model_pose="-0.0 -1.5 0.0 0.0 -0.0 1.56"/>
+    <include filename="wood_chair.model" model_name="wood_chair" model_pose="-3.0 -0.25 0.0 0.0 -0.0 1.56"/>
+    <include filename="ps3_control.model" model_name="ps3_control" model_pose="-1.8 0.0 0.75 0.0 -0.0 -1.56"/>
+    <include filename="Laptop.model" model_name="Laptop" model_pose="-1.9 0.5 0.75 0.0 -0.0 4.0"/>
+    <include filename="portable_table.model" model_name="portable_table" model_pose="-2.0 -0.7 0.75 3.13 -0.0 1.56"/>
+
+    <!-- Tuna Cans (Landmines) -->
+    <include filename="tuna_can.model" model_name="tuna_can_1" model_pose="2.0 2.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_2" model_pose="6.0 7.5 -0.04 0.0 -0.3 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_3" model_pose="1.0 8.5 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_4" model_pose="7.5 4.0 0.01 0.0 0.0 0.0"/>
+    
+    <include filename="tuna_can.model" model_name="tuna_can_5" model_pose="8.5 -4.0 0.12 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_6" model_pose="5.0 -9.0 -0.02 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_7" model_pose="1.0 -5.2 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_8" model_pose="4.0 -5.0 0.0 0.0 0.0 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_9" model_pose="-1.5 5.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_10" model_pose="-5.0 9.5 0.0 0.0 -0.5 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_11" model_pose="-7.0 5.4 -0.04 0.2 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_12" model_pose="-9.5 2.0 0.00 0.0 -0.5 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_13" model_pose="-9.0 -3.0 0.1 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_14" model_pose="-8.0 -2.0 0.1 0.0 -0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_15" model_pose="-1.5 -7.0 0.0 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_16" model_pose="-9.5 -9.5 0.17 0.0 0.0 0.0"/>
+
+    <!-- Rocks -->
+    <include filename="rock_1.model" model_name="rock_1" model_pose="8.0 0.0 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_1.model" model_name="rock_1a" model_pose="-6.0 -7.5 0.0 0.0 -0.0 0.0"/>
+    <include filename="rock_1.model" model_name="rock_1b" model_pose="8.0 -5.5 0.0 0.0 0.0 7.5"/>
+    <include filename="rock_1.model" model_name="rock_1c" model_pose="-4.5 7.0 0.0 0.0 0.0 7.0"/>	
+    <include filename="rock_1.model" model_name="rock_1d" model_pose="-6.5 4.5 0.0 0.0 0.0 -5.0"/>	
+
+    <include filename="rock_2.model" model_name="rock_2" model_pose="7.0 9.5 0.0 0.0 0.0 5.0"/>	
+    <include filename="rock_2.model" model_name="rock_2a" model_pose="-3.0 7.0 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_2.model" model_name="rock_2b" model_pose="2.0 -6.0 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_2.model" model_name="rock_2c" model_pose="-7.5 -9.0 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_2.model" model_name="rock_2d" model_pose="-7.0 -6.0 0.0 0.0 0.0 0.0"/>
+
+    <include filename="rock_3.model" model_name="rock_3" model_pose="5.0 -4.0 0.0 0.0 0.0 5.0"/>	
+    <include filename="rock_3.model" model_name="rock_3a" model_pose="3.0 8.5 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_3.model" model_name="rock_3b" model_pose="2.0 7.5 0.0 0.0 0.0 1.0"/>
+    <include filename="rock_3.model" model_name="rock_3c" model_pose="3.0 6.0 0.0 0.0 0.0 -2.0"/>
+    <include filename="rock_3.model" model_name="rock_3d" model_pose="5.0 5.5 0.0 0.0 0.0 0.5"/>
+    <include filename="rock_3.model" model_name="rock_3e" model_pose="-6.0 -8.5 0.0 0.0 0.0 0.5"/>
+
+    <include filename="rock_4.model" model_name="rock_4" model_pose="-2.0 -1.5 0.0 0.0 0.0 0.0"/>	
+    <include filename="rock_4.model" model_name="rock_4a" model_pose="1.0 6.5 0.0 0.0 0.0 -7.0"/>
+    <include filename="rock_4.model" model_name="rock_4b" model_pose="4.0 4.5 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_4.model" model_name="rock_4c" model_pose="6.0 6.0 0.0 0.0 0.0 7.0"/>
+    <include filename="rock_4.model" model_name="rock_4d" model_pose="-7.8 -9.5 0.0 0.0 0.0 7.0"/>
+
+    <include filename="rock_5.model" model_name="rock_5" model_pose="0.0 -7.0 0.0 0.0 0.0 0.0"/>	
+    <include filename="rock_5.model" model_name="rock_5a" model_pose="-8.5 -8.5 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_5.model" model_name="rock_5b" model_pose="-3.0 -6.5 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_5.model" model_name="rock_5c" model_pose="1.0 8.5 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_5.model" model_name="rock_5d" model_pose="5.8 8.2 0.0 0.0 0.0 -2.0"/>
+
+    <include filename="rock_6.model" model_name="rock_6" model_pose="1.5 8.5 0.0 0.0 0.0 0.0"/>	
+    <include filename="rock_6.model" model_name="rock_6a" model_pose="7.5 -4.7 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_6.model" model_name="rock_6b" model_pose="-7.8 7.2 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_6.model" model_name="rock_6c" model_pose="-8.0 -8.2 0.0 0.0 0.0 0.0"/>
+    <include filename="rock_6.model" model_name="rock_6d" model_pose="-9.0 2.2 0.0 0.0 0.0 0.0"/>
+
+    <include filename="rock_7.model" model_name="rock_7" model_pose="0.0 8.4 0.0 0.0 0.0 0.0"/>	
+    <include filename="rock_7.model" model_name="rock_7a" model_pose="4.0 7.2 0.0 0.0 0.0 -1.5"/>
+    <include filename="rock_7.model" model_name="rock_7b" model_pose="8.5 3.0 0.0 0.0 0.0 -7.0"/>
+    <include filename="rock_7.model" model_name="rock_7c" model_pose="-2.0 -9.0 0.0 0.0 0.0 0.0"/>
+
+    <!-- Plants -->	
+    <include filename="plant.model" model_name="plant_1" model_pose="5.0 2.0 0.0 0.0 0.0 0.0"/>
+    <include filename="plant.model" model_name="plant_1a" model_pose="7.0 9.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant.model" model_name="plant_1b" model_pose="-1.5 -6.0 0.0 0.0 -0.0 0.0"/> <!-- Over a landmine-->
+    <include filename="plant.model" model_name="plant_1c" model_pose="9.0 -7.0 0.15 0.0 -0.0 0.0"/>
+    <include filename="plant.model" model_name="plant_1d" model_pose="-9.0 9.0 0.0 0.0 -0.0 0.0"/>
+
+    <include filename="plant2.model" model_name="plant_2" model_pose="-7.0 4.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2a" model_pose="-1.0 2.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2c" model_pose="2.0 -4.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2d" model_pose="3.0 1.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2e" model_pose="-7.0 -1.0 0.05 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2f" model_pose="-2.0 5.2 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2g" model_pose="-3.0 8.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2h" model_pose="0.0 -2.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2i" model_pose="-3.0 -3.5 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2j" model_pose="-8.0 5.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2k" model_pose="6.0 4.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2l" model_pose="-5.0 -2.9 0.05 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2m" model_pose="-8.0 -6.0 0.15 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2n" model_pose="-7.0 4.5 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2o" model_pose="-6.0 5.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2p" model_pose="-8.5 4.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2q" model_pose="-4.2 5.2 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2r" model_pose="-7.5 5.3 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2s" model_pose="-5.3 4.7 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2t" model_pose="-6.5 7.2 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2u" model_pose="-6.3 6.4 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2v" model_pose="-7.2 6.0 0.0 0.0 -0.0 0.0"/>
+    <include filename="plant2.model" model_name="plant_2w" model_pose="-5.9 3.0 0.0 0.0 -0.0 0.0"/> <!-- Over a landmine-->
+
+    <include filename="plant3.model" model_name="plant_3" model_pose="1.85 2.0 0.0 0.0 0.0 0.0"/> <!-- Over a landmine-->
+    <include filename="plant3.model" model_name="plant_3a" model_pose="2.0 2.15 0.0 0.0 0.0 0.0"/>
+    <include filename="plant3.model" model_name="plant_3b" model_pose="1.0 -5.05 0.0 0.0 0.0 0.0"/>
+    <include filename="plant3.model" model_name="plant_3c" model_pose="-4.0 -3.0 0.0 0.0 0.0 0.0"/>
+
+    <include filename="plant4.model" model_name="plant_4" model_pose="-1.0 4.0 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4a" model_pose="6.0 -9.4 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4b" model_pose="4.0 -9.0 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4c" model_pose="4.0 -7.0 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4d" model_pose="5.0 -8.2 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4e" model_pose="3.0 -8.5 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4f" model_pose="2.0 -7.5 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4g" model_pose="3.0 -6.5 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4h" model_pose="6.5 -7.5 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4i" model_pose="-1.5 5.7 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4j" model_pose="-3.5 3.0 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4k" model_pose="-2.5 5.0 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4l" model_pose="0.0 4.5 0.0 0.0 0.0 7.0"/>
+    <include filename="plant4.model" model_name="plant_4m" model_pose="-2.5 4.0 0.0 0.0 0.0 7.0"/>
+
+    <!-- Pond -->
+    <include filename="pond.model" model_name="pond" model_pose="7.0 4.5 -0.3 0.0 -0.0 -6.0"/>
+
+    <!-- Traffic Bollards -->
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_1" model_pose="-10 -10 0.25 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_2" model_pose="-10 -6 0.17 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_3" model_pose="-10 -2 0.15 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_4" model_pose="-10 2 0.1 0 0 0"/>	
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_5" model_pose="-10 6 0.1 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_6" model_pose="-10 10 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_7" model_pose="-6 10 0.1 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_8" model_pose="-2 10 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_10" model_pose="2 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_11" model_pose="6 10 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_12" model_pose="10 10 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_13" model_pose="10 6 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_14" model_pose="10 2 0.05 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_15" model_pose="10 -2 0.0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_16" model_pose="10 -6 0.2 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_17" model_pose="10 -10 0.15 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_18" model_pose="6 -10 0.15 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_19" model_pose="2 -10 0. 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_20" model_pose="-2 -10 0.02 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_21" model_pose="-6 -10 0.05 0 0 0"/>
+
+    <!-- Start point -->
+    <include filename="../models/competition_start.model" model_name="competition_start" model_pose="0.0 0.0 0.01 0.0 0.0 0.0" >
+
+  </world>
+</gazebo>
