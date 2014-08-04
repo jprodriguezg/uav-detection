@@ -1,0 +1,26 @@
+<package>
+  <description brief="drone_GPS">
+
+     drone_GPS
+     ROS Package used for obtain the GPS data of flight recorder
+
+  </description>
+  <author>Juan Pablo Rodríguez (j_rodriguezg@javeriana.edu.co)</author>
+  <license>GNU GPL</license>
+  <review status="unreviewed" notes=""/>
+  <url></url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+  <depend package="image_transport"/>
+  <depend package="ardrone_autonomy"/>
+  <depend package="roslib"/>
+  <rosdep name="qt4"/>
+  <rosdep name="libblas-dev"/>
+  <rosdep name="liblapack-dev"/>
+  <rosdep name="libqt4-dev"/>
+  <rosdep name="qt4-qmake"/>
+</package>
+
+
