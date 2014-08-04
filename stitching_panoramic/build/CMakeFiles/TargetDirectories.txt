@@ -1,0 +1,17 @@
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/ROSBUILD_genmsg_lisp.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/clean-test-results.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/complete_mosaic.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/parcial_mosaic.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/rosbuild_precompile.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/rosbuild_premsgsrvgen.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/rospack_genmsg.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/rospack_genmsg_libexe.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/rospack_gensrv.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/test.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/test-future.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/test-results.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/test-results-run.dir
+/home/caro/fuerte_workspace/sandbox/stitching_panoramic/build/CMakeFiles/tests.dir

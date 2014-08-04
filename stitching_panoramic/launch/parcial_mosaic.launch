@@ -1,0 +1,9 @@
+<!-- This is a sample lanuch file, please change it based on your needs -->
+<launch>
+ 	<node name="drone_stateestimation" pkg="tum_ardrone" type="drone_stateestimation">
+	</node>
+	<node name="drone_gui" pkg="tum_ardrone" type="drone_gui">
+  	</node> 
+        <node name="parcial_mosaic" pkg="stitching_panoramic" type="parcial_mosaic" output="screen">
+        </node>   
+</launch>

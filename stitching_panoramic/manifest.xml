@@ -1,0 +1,27 @@
+<package>
+  <description brief="stitching_panoramic">
+
+     stitching_panoramic
+
+  </description>
+  <author>dell-077</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/stitching_panoramic</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+  <depend package="image_transport"/>
+  <depend package="ardrone_autonomy"/>
+  <depend package="roslib"/>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+
+
+
+</package>
+
+
