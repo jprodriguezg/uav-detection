@@ -1,0 +1,19 @@
+<package>
+  <description brief="landmine_zone_gazebo">
+
+     landmine_zone_gazebo
+
+  </description>
+  <author>Juan Pablo Rodríguez (j_rodriguezg@javeriana.edu.co) Carolina Castiblanco (jenny.castiblanco@javeriana.edu.co)</author>
+  <license>GNU GPL</license>
+  <review status="unreviewed" notes=""/>
+  <url></url>
+  <depend package="gazebo"/>
+
+  <export>
+    <gazebo gazebo_media_path="${prefix}" />
+  </export>
+
+</package>
+
+

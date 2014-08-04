@@ -1,0 +1,190 @@
+<?xml version ='1.0'?>
+<gazebo version ='1.0'>
+  <world name='default'>
+
+<!--
+  This file is part of landmine_zone_gazebo.
+
+  Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+           Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co>
+-->
+
+<!-- A global light source -->
+    <include filename="sun.light"/>
+
+     <light type="point" name="light_0" cast_shadows="false">
+      <origin pose="22 6 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <light type="point" name="light_1" cast_shadows="false">
+      <origin pose="22 2 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+
+   <light type="point" name="light_2" cast_shadows="false">
+      <origin pose="22 -2 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+   <light type="point" name="light_3" cast_shadows="false">
+      <origin pose="22 -6 -0.50 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+     <light type="point" name="light_4" cast_shadows="false">
+      <origin pose="22 -10 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+     <light type="point" name="light_4" cast_shadows="false">
+      <origin pose="22 -14 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+     <light type="point" name="light_5" cast_shadows="false">
+      <origin pose="22 -18 -0.8 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <light type="point" name="light_6" cast_shadows="false">
+      <origin pose="19 -16 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <light type="point" name="light_7" cast_shadows="false">
+      <origin pose="13 -16 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <light type="point" name="light_8" cast_shadows="false">
+      <origin pose="7 -16 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <light type="point" name="light_9" cast_shadows="false">
+      <origin pose="1 -16 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+     <light type="point" name="light_10" cast_shadows="false">
+      <origin pose="1 -4 -0.5 0 0 0"/>
+      <diffuse rgba="1.0 1.0 1.0 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.8" linear="0.2" quadratic="0.01"/>
+    </light>
+
+    <!-- Ground Plane and Terrain -->
+    <include filename="terrain_6.model" model_name="terrain6" model_pose="10.0 0.0 -0.05 0.0 0.0 0.0"/>
+	
+    <!-- Tower -->
+    <include filename="tower_1.model" model_name="tower_1" model_pose="-35.0 -10.0 -0.1 0.0 0.0 0.0"/>
+
+    <!-- Furniture -->
+    <include filename="tent.model" model_name="tent" model_pose="4.0 -11.5 0.0 0.0 -0.0 1.56"/>
+    <include filename="wood_chair.model" model_name="wood_chair" model_pose="2.0 -10.25 0.0 0.0 -0.0 1.56"/>
+    <include filename="ps3_control.model" model_name="ps3_control" model_pose="3.2 -10.0 0.75 0.0 -0.0 -1.56"/>
+    <include filename="Laptop.model" model_name="Laptop" model_pose="3.1 -9.5 0.75 0.0 -0.0 4.0"/>
+    <include filename="portable_table.model" model_name="portable_table" model_pose="3.0 -10.7 0.75 3.13 -0.0 1.56"/>
+
+     <!-- Tree -->
+    <include filename="tree_1.model" model_name="tree_1a" model_pose="22.0 8.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1b" model_pose="22.0 4.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1c" model_pose="22.0 0.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1d" model_pose="22.0 -4.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1e" model_pose="22.0 -8.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1f" model_pose="22.0 -12.0 -0.8 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_1g" model_pose="22.0 -16.0 -0.8 0.0 0.0 0.0"/>
+    
+    <include filename="tree_1.model" model_name="tree_2a" model_pose="19.0 6.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2b" model_pose="19.0 2.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2c" model_pose="19.0 -2.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2d" model_pose="19.0 -6.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2e" model_pose="19.0 -10.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2f" model_pose="19.0 -14.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_2g" model_pose="19.0 -18.0 -0.6 0.0 0.0 0.0"/>
+    
+    <include filename="tree_1.model" model_name="tree_3a" model_pose="25.0 6.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3b" model_pose="25.0 2.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3c" model_pose="25.0 -2.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3d" model_pose="25.0 -6.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3e" model_pose="25.0 -10.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3f" model_pose="25.0 -14.0 -0.6 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_3g" model_pose="25.0 -18.0 -0.8 0.0 0.0 0.0"/>
+    
+    <include filename="tree_1.model" model_name="tree_4a" model_pose="16.0 -16.0 -0.2 0.0 0.0 0.0"/>
+
+    <include filename="tree_1.model" model_name="tree_5a" model_pose="13.0 -14.0 -0.2 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_5b" model_pose="13.0 -18.0 -0.8 0.0 0.0 0.0"/>
+
+    <include filename="tree_1.model" model_name="tree_6a" model_pose="10.0 -16.0 -0.0 0.0 0.0 0.0"/>
+
+    <include filename="tree_1.model" model_name="tree_7a" model_pose="7.0 -14.0 -0.0 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_7b" model_pose="7.0 -18.0 -0.0 0.0 0.0 0.0"/>
+ 
+    <include filename="tree_1.model" model_name="tree_8a" model_pose="4.0 -16.0 -0.0 0.0 0.0 0.0"/>
+
+    <include filename="tree_1.model" model_name="tree_9a" model_pose="1.0 -14.0 -0.0 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_9b" model_pose="1.0 -18.0 -0.0 0.0 0.0 0.0"/>
+
+    <include filename="tree_1.model" model_name="tree_10a" model_pose="-2.0 -16.0 -0.0 0.0 0.0 0.0"/>
+   
+    <include filename="tree_1.model" model_name="tree_11a" model_pose="4.0 -8.0 -0.0 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_11b" model_pose="4.0 -4.0 -0.0 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_11c" model_pose="4.0 0.0 -0.0 0.0 0.0 0.0"/>
+  
+    <include filename="tree_1.model" model_name="tree_12a" model_pose="1.0 -6.0 -0.0 0.0 0.0 0.0"/>
+    <include filename="tree_1.model" model_name="tree_12b" model_pose="1.0 -2.0 -0.0 0.0 0.0 0.0"/>
+
+
+    <!-- Tuna Cans (Landmines) -->
+    <include filename="tuna_can.model" model_name="tuna_can_1" model_pose="12.0 -3.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_2" model_pose="16.0 2.5 -0.15 0.0 -0.3 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_3" model_pose="11.0 3.5 -0.04 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_4" model_pose="17.5 -1.0 -0.16 0.0 0.0 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_5" model_pose="18.5 -9.0 -0.18 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_6" model_pose="15.0 -14.0 -0.12 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_7" model_pose="11.0 -10.2 -0.05 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_8" model_pose="14.0 -10.0 -0.09 0.0 0.0 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_9" model_pose="6.5 -5.0 0.02 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_10" model_pose="17.0 4.5 -0.15 0.0 -0.5 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_11" model_pose="8.0 0.4 -0.02 0.2 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_12" model_pose="17.5 3.0 -0.15 0.0 -0.5 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_13" model_pose="10.5 -7.0 -0.04 0.0 -0.5 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_14" model_pose="20.0 -11.0 -0.23 0.0 -0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_15" model_pose="13.5 -13.0 -0.08 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_16" model_pose="18.5 -4.5 -0.17 0.0 0.0 0.0"/>
+
+
+
+    <!-- Competition Start Model -->
+    <include filename="../models/competition_start.model" model_name="competition_start" model_pose="7.0 -9.5 0.1 0.0 0.0 0.0" />
+    
+</world>
+</gazebo>

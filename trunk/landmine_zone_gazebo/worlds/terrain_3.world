@@ -1,0 +1,79 @@
+<?xml version ='1.0'?>
+<gazebo version ='1.0'>
+  <world name='default'>
+
+<!--
+  This file is part of landmine_zone_gazebo.
+
+  Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+           Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co>
+-->
+
+<!-- A global light source -->
+    <include filename="sun.light"/>
+    
+    <!-- Ground Plane and Terrain -->
+    <include filename="terrain_3.model" model_name="terrain3" model_pose="0.0 0.0 0.0 0.0 0.0 0.0"/>
+
+    <!-- Furniture -->
+    <include filename="tent.model" model_name="tent" model_pose="-0.0 -1.5 0.0 0.0 -0.0 1.56"/>
+    <include filename="wood_chair.model" model_name="wood_chair" model_pose="-3.0 -0.25 0.0 0.0 -0.0 1.56"/>
+    <include filename="ps3_control.model" model_name="ps3_control" model_pose="-1.8 0.0 0.75 0.0 -0.0 -1.56"/>
+    <include filename="Laptop.model" model_name="Laptop" model_pose="-1.9 0.5 0.75 0.0 -0.0 4.0"/>
+    <include filename="portable_table.model" model_name="portable_table" model_pose="-2.0 -0.7 0.75 3.13 -0.0 1.56"/>
+
+    <!-- Tuna Cans (Landmines) -->
+    <include filename="tuna_can.model" model_name="tuna_can_1" model_pose="2.0 2.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_2" model_pose="6.0 7.5 -0.06 0.0 -0.3 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_3" model_pose="1.0 8.5 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_4" model_pose="7.5 4.0 -0.06 0.0 0.0 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_5" model_pose="8.5 -4.0 0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_6" model_pose="5.0 -9.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_7" model_pose="1.0 -5.2 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_8" model_pose="4.0 -5.0 -0.06 0.0 0.0 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_9" model_pose="-1.5 5.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_10" model_pose="-5.0 9.5 -0.06 0.0 -0.5 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_11" model_pose="-7.0 5.4 -0.06 0.2 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_12" model_pose="-9.5 2.0 -0.06 0.0 -0.5 0.0"/>
+
+    <include filename="tuna_can.model" model_name="tuna_can_14" model_pose="-8.0 -2.0 -0.06 0.0 -0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_15" model_pose="-1.5 -7.0 -0.06 0.0 0.0 0.0"/>
+    <include filename="tuna_can.model" model_name="tuna_can_16" model_pose="-9.5 -9.5 -0.06 0.0 0.0 0.0"/>
+
+    <!-- Tree -->
+    <include filename="tree_2.model" model_name="tree_2a" model_pose="1.0 4.0 0.0 0.0 0.0 0.0"/>
+    <include filename="tree_2.model" model_name="tree_2b" model_pose="11.0 11.0 0.0 0.0 0.0 0.0"/> 
+    <include filename="tree_2.model" model_name="tree_2c" model_pose="-11.0 11.0 0.0 0.0 0.0 0.0"/>
+    <include filename="tree_2.model" model_name="tree_2d" model_pose="7.0 -9.0 0.0 0.0 0.0 0.0"/>
+    <include filename="tree_2.model" model_name="tree_2e" model_pose="-9.0 -7.0 0.0 0.0 0.0 0.0"/>
+    <include filename="tree_2.model" model_name="tree_2f" model_pose="13.0 -1.0 0.0 0.0 0.0 0.0"/>
+
+    <!-- Traffic Bollards -->
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_1" model_pose="-10 -10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_2" model_pose="-10 -6 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_3" model_pose="-10 -2 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_4" model_pose="-10 2 0 0 0 0"/>	
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_5" model_pose="-10 6 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_6" model_pose="-10 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_7" model_pose="-6 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_8" model_pose="-2 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_10" model_pose="2 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_11" model_pose="6 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_12" model_pose="10 10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_13" model_pose="10 6 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_14" model_pose="10 2 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_15" model_pose="10 -2 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_16" model_pose="10 -6 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_17" model_pose="10 -10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_18" model_pose="6 -10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_19" model_pose="2 -10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_20" model_pose="-2 -10 0 0 0 0"/>
+    <include filename="traffic_bollard.model" model_name="traffic_bollard_21" model_pose="-6 -10 0 0 0 0"/>
+
+    <!-- Competition Start Model -->
+    <include filename="../models/competition_start.model" model_name="competition_start" model_pose="0.0 0.0 0.005 0.0 0.0 0.0" />
+    
+</world>
+</gazebo>
