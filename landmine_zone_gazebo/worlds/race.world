@@ -1,0 +1,28 @@
+<?xml version ='1.0'?>
+<gazebo version ='1.0'>
+  <world name='default'>
+
+<!-- 
+  This file is part of landmine_zone_gazebo.
+
+  Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+           Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co>
+-->
+
+<!-- A global light source -->
+    <include filename="sun.light"/>
+    
+    <!-- Ground Plane -->
+    <include filename="ground_plane.model" model_name="ground_plane" model_pose="0.0 0.0 -5.0 0.0 0.0 0.0"/>
+
+    <!-- Terrain -->
+    <include filename="race.model" model_name="race" model_pose="0.0 0.0 -0.2 0.0 0.0 0.0"/>
+    
+    
+    <!-- Start point -->
+    <include filename="../models/competition_start.model" model_name="competition_start" model_pose="0.0 0.0 0.1 0.0 0.0 0.0" >
+
+    
+
+  </world>
+</gazebo>

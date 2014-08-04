@@ -1,0 +1,31 @@
+<!-- 
+
+This file is part of landmine_zone_gazebo.
+
+Authors: Juan Pablo Rodríguez, Pontificia Universidad Javeriana - Bogotá <j_rodriguezg@javeriana.edu.co>
+         Carolina Castiblanco, Pontificia Universidad Javeriana - Bogotá <jenny.castiblanco@javeriana.edu.co
+
+The collada file was created for the package landmine_zone_gazebo by their authors.
+
+-->
+
+<gazebo version="1.0">
+  <model name="terrain3" static="true">
+    <origin pose="0.0 0.0 0.0 0.0 0.0 0.0" />
+
+    <link name="terrain3_link">
+      <visual name="terrain3_visual">
+        <geometry>
+          <mesh filename="terrain3.dae" scale="0.5 0.5 0.5" />
+        </geometry>
+      </visual>
+
+      <collision name="terrain3_collision">
+        <geometry>
+          <mesh filename="stl/terrain3.stl" scale="0.5 0.5 0.5" />
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</gazebo>
