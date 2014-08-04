@@ -1,0 +1,7 @@
+ To convert the cvs files to KMZ  (Format of google earth) use this web pages.
+
+http://www.gpsvisualizer.com/map?output_googleearth
+http://www.earthpoint.us/exceltokml.aspx
+
+Then of the conversion, you only need to drag the KML file to google earth to see the complete trayectory
+
