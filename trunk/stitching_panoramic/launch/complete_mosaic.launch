@@ -1,0 +1,5 @@
+<!-- This is a sample lanuch file, please change it based on your needs -->
+<launch>
+ 	<node name="complete_mosaic" pkg="stitching_panoramic" type="complete_mosaic" output="screen">
+	</node>  
+</launch>
